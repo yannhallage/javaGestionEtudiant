@@ -1,0 +1,39 @@
+/* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
+.with-form{
+	-fx-background-color: #F8FAFC;
+}
+
+
+
+/*label */
+
+.label-login{
+	-fx-color:black;
+	-fx-font-size:30px;
+	-fx-font-weight:bold;
+}
+
+.second-sidebar{
+	-fx-background-color:#DC5F00;
+}
+.button-xfml {
+    -fx-background-color: #4CAF50; 
+    -fx-text-fill: white;          
+    -fx-padding: 10 20;            
+    -fx-font-size: 14px;           
+    -fx-border-radius: 8px;        
+    -fx-background-radius: 8px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 8, 0, 0, 2);
+}
+
+.button-xfml:hover {
+    -fx-background-color: #45a049;
+}
+
+.button-xfml:pressed {
+    -fx-background-color: #3e8e41;
+}
+
+.register-link{
+	-fx-color : blue;
+}

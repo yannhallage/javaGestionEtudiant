@@ -1,0 +1,10 @@
+com\monprojet\application\Main.class
+com\monprojet\application\controller\windowInscription.class
+com\monprojet\application\viewcontroller\viewController$DatabaseConnection.class
+com\monprojet\application\controller\InterfaceAdministrateurAdd.class
+com\monprojet\application\controller\InterfaceAdministrateur.class
+com\monprojet\application\controller\interfaceadministrateuraddmodule.class
+com\monprojet\application\controller\interfaceadministrateuradden.class
+com\monprojet\application\controller\interfaceadministrateuraddclass.class
+com\monprojet\application\viewcontroller\viewController.class
+com\monprojet\application\controller\InterfaceEtudiant.class

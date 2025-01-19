@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="594.0" prefWidth="890.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.monprojet.application.controller.InterfaceAdministrateur">
+   <children>
+      <BorderPane prefHeight="200.0" prefWidth="200.0">
+         <top>
+            <Pane prefHeight="124.0" prefWidth="890.0" style="-fx-background-color: #8eb486;" BorderPane.alignment="CENTER">
+               <children>
+                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="361.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../picture/UTA.jpg" />
+                     </image>
+                  </ImageView>
+               </children></Pane>
+         </top>
+         <center>
+            <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Pane fx:id="addEtudiant" layoutX="110.0" layoutY="66.0" onMouseClicked="#handleAddEtudiantClick" prefHeight="122.0" prefWidth="215.0" style="-fx-background-color: white;" styleClass="card-option" stylesheets="@../font/interfacAdmin.css">
+                     <children>
+                        <ImageView fitHeight="48.0" fitWidth="119.0" layoutX="-35.0" layoutY="37.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
+                           <image>
+                              <Image url="@../picture/UTA.jpg" />
+                           </image>
+                        </ImageView>
+                        <Text layoutX="56.0" layoutY="54.0" strokeType="OUTSIDE" strokeWidth="0.0" text="AJOUTER UN ETUDIANT" wrappingWidth="137.857421875">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Text>
+                        <Separator layoutX="50.0" layoutY="4.0" orientation="VERTICAL" prefHeight="114.0" prefWidth="3.0" />
+                     </children>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Pane>
+                  <Separator layoutX="95.0" layoutY="376.0" prefWidth="700.0" />
+                  <Pane fx:id="addEnseignant" layoutX="334.0" layoutY="67.0" onMouseClicked="#handleAddEnseignantClick" prefHeight="122.0" prefWidth="215.0" style="-fx-background-color: white;" styleClass="card-option" stylesheets="@../font/interfacAdmin.css">
+                     <children>
+                        <ImageView fitHeight="48.0" fitWidth="119.0" layoutX="-35.0" layoutY="37.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
+                           <image>
+                              <Image url="@../picture/UTA.jpg" />
+                           </image>
+                        </ImageView>
+                        <Separator layoutX="50.0" layoutY="4.0" orientation="VERTICAL" prefHeight="114.0" prefWidth="3.0" />
+                        <Text layoutX="56.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="AJOUTER UN ENSEIGNANT" wrappingWidth="137.857421875">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Text>
+                     </children>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Pane>
+                  <Pane fx:id="addClasse" layoutX="559.0" layoutY="68.0" onMouseClicked="#handleAddClasseClick" prefHeight="122.0" prefWidth="215.0" style="-fx-background-color: white;" styleClass="card-option" stylesheets="@../font/interfacAdmin.css">
+                     <children>
+                        <ImageView fitHeight="48.0" fitWidth="119.0" layoutX="-35.0" layoutY="37.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
+                           <image>
+                              <Image url="@../picture/UTA.jpg" />
+                           </image>
+                        </ImageView>
+                        <Separator layoutX="50.0" layoutY="4.0" orientation="VERTICAL" prefHeight="114.0" prefWidth="3.0" />
+                        <Text layoutX="56.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="AJOUTER UNE CLASSE" wrappingWidth="137.857421875">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Text>
+                     </children>
+                     <cursor>
+                        <Cursor fx:constant="DEFAULT" />
+                     </cursor>
+                  </Pane>
+                  <Pane fx:id="addModule" layoutX="110.0" layoutY="198.0" onMouseClicked="#handleAddModuleClick" prefHeight="122.0" prefWidth="215.0" style="-fx-background-color: white;" styleClass="card-option" stylesheets="@../font/interfacAdmin.css">
+                     <children>
+                        <ImageView fitHeight="48.0" fitWidth="119.0" layoutX="-35.0" layoutY="37.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
+                           <image>
+                              <Image url="@../picture/UTA.jpg" />
+                           </image>
+                        </ImageView>
+                        <Separator layoutX="50.0" layoutY="4.0" orientation="VERTICAL" prefHeight="114.0" prefWidth="3.0" />
+                        <Text layoutX="56.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="AJOUTER UN MODULE" wrappingWidth="137.857421875">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Text>
+                     </children>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Pane>
+                  <Text layoutX="187.0" layoutY="417.0" strokeType="OUTSIDE" strokeWidth="0.0" text="An open-source prototype of both a “match 3” game and an old-school RPG with an infinite hallway and items to collect. These templates focus on modular design and project organization." textAlignment="CENTER" wrappingWidth="516.619140625" />
+               </children>
+            </Pane>
+         </center>
+      </BorderPane>
+   </children>
+</StackPane>

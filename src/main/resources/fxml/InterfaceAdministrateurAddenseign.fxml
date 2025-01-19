@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="671.0" prefWidth="1324.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.monprojet.application.controller.interfaceadministrateuradden">
+   <children>
+      <BorderPane prefHeight="200.0" prefWidth="200.0">
+         <left>
+            <Pane prefHeight="671.0" prefWidth="272.0" style="-fx-background-color: #f1f1f1;" BorderPane.alignment="CENTER">
+               <children>
+                  <ImageView fitHeight="159.0" fitWidth="140.0" layoutX="61.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../picture/avatar-account-icon-default-social-media-profile-photo-vector-Photoroom.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="68.0" layoutY="152.0" text="YANN HALLAGE">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Separator layoutX="36.0" layoutY="222.0" prefWidth="200.0" />
+                  <Text layoutX="47.0" layoutY="263.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-style: italic; -fx-font-style: bold;" text="Connecter en tantque Administrateur" textAlignment="CENTER" wrappingWidth="178.2431640625">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
+                  <Separator layoutX="38.0" layoutY="574.0" prefWidth="200.0" />
+                  <Separator layoutX="38.0" layoutY="321.0" prefWidth="200.0" />
+                  <Text layoutX="12.0" layoutY="380.0" opacity="0.54" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-style: italic; -fx-font-style: bold;" text="An open-source prototype of both a “match 3” game and an old-school RPG with an infinite hallway and items to collect. These templates focus on modular design and project organization." textAlignment="CENTER" wrappingWidth="248.2431640625">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Text>
+                  <Button fx:id="buttonquitter" layoutX="106.0" layoutY="606.0" mnemonicParsing="false" text="Button" />
+               </children>
+            </Pane>
+         </left>
+         <center>
+            <Pane prefHeight="671.0" prefWidth="909.0" style="-fx-background-color: #F3F7EC;" BorderPane.alignment="CENTER">
+               <children>
+                  <Label layoutX="9.0" layoutY="13.0" text="AJOUTER UN ENSEIGNANT">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Label>
+                  <Pane layoutX="8.0" layoutY="51.0" prefHeight="170.0" prefWidth="1035.0" style="-fx-background-color: #f1f1f1;">
+                     <children>
+						<TextField fx:id="matriculeENS" layoutX="17.0" layoutY="44.0" prefHeight="33.0" prefWidth="209.0" promptText="ex:13028404K">
+						</TextField>                        <Separator layoutX="676.0" layoutY="15.0" orientation="VERTICAL" prefHeight="145.0" prefWidth="6.0" />
+                        <TextField fx:id="nomEN" layoutX="234.0" layoutY="44.0" prefHeight="32.0" prefWidth="204.0" promptText="Nom " />
+                        <Label layoutX="17.0" layoutY="27.0" text="Matricule Enseignant" />
+                        <Label layoutX="17.0" layoutY="86.0" text="adresse email" />
+                        <Label layoutX="236.0" layoutY="27.0" text="Nom Enseignant" />
+                        <TextField fx:id="prenomEN" layoutX="443.0" layoutY="44.0" prefHeight="31.0" prefWidth="205.0" promptText="Prenom" />
+                        <TextField fx:id="mailEN" layoutX="17.0" layoutY="103.0" prefHeight="33.0" prefWidth="210.0" promptText="\@gmail.com" />
+                        <Label layoutX="446.0" layoutY="27.0" text="Prenom Enseignant" />
+                        <Button fx:id="buttonajouter" layoutX="382.0" layoutY="103.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="85.0" style="-fx-background-color: #8eb486;" text="ajouter" textFill="WHITE">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                        <Button fx:id="buttonvider" layoutX="476.0" layoutY="103.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="89.0" style="-fx-background-color: #FF2929;" text="vider" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold Italic" size="13.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                        <Label layoutX="238.0" layoutY="88.0" text="numero de telephone" />
+                        <TextField fx:id="telephone" layoutX="236.0" layoutY="107.0" prefHeight="25.0" prefWidth="140.0" promptText="tel" />
+                     </children></Pane>
+                  <Pane layoutX="9.0" layoutY="241.0" prefHeight="411.0" prefWidth="1031.0" style="-fx-background-color: #f1f1f1;">
+                     <children>
+                        <TableView focusTraversable="false" layoutY="-2.0" prefHeight="413.0" prefWidth="1033.0">
+                          <columns>
+                            <TableColumn fx:id="id" prefWidth="75.0" text="id" />
+                            <TableColumn fx:id="matriculeenseignant" prefWidth="184.0" text="matricule enseignant" />
+                              <TableColumn fx:id="nomenseignant" prefWidth="212.0" text="nom enseignant" />
+                              <TableColumn fx:id="prenomenseignant" prefWidth="229.0" text="prenom enseignant" />
+                              <TableColumn fx:id="classeenseignant" prefWidth="151.0" text="classe rattaché" />
+                              <TableColumn fx:id="dateenseignant" prefWidth="180.0" text="date inscription" />
+                          </columns>
+                        </TableView>
+                     </children></Pane>
+                  <ImageView fitHeight="48.0" fitWidth="161.0" layoutX="932.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../picture/UTA.jpg" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+         </center>
+      </BorderPane>
+   </children>
+</StackPane>
