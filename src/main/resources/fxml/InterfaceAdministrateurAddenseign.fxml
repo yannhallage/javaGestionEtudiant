@@ -88,14 +88,13 @@
                      </children></Pane>
                   <Pane layoutX="9.0" layoutY="241.0" prefHeight="411.0" prefWidth="1031.0" style="-fx-background-color: #f1f1f1;">
                      <children>
-                        <TableView focusTraversable="false" layoutY="-2.0" prefHeight="413.0" prefWidth="1033.0">
+                        <TableView fx:id="tableView" focusTraversable="false" layoutY="-2.0" prefHeight="413.0" prefWidth="1033.0">
                           <columns>
-                            <TableColumn fx:id="id" prefWidth="75.0" text="id" />
                             <TableColumn fx:id="matriculeenseignant" prefWidth="184.0" text="matricule enseignant" />
                               <TableColumn fx:id="nomenseignant" prefWidth="212.0" text="nom enseignant" />
                               <TableColumn fx:id="prenomenseignant" prefWidth="229.0" text="prenom enseignant" />
-                              <TableColumn fx:id="classeenseignant" prefWidth="151.0" text="classe rattaché" />
-                              <TableColumn fx:id="dateenseignant" prefWidth="180.0" text="date inscription" />
+                              <TableColumn fx:id="emailenseignant" prefWidth="151.0" text="adresse mail" />
+                              <TableColumn fx:id="telephoneenseignant" prefWidth="256.0" text="numero telephone" />
                           </columns>
                         </TableView>
                      </children></Pane>

@@ -91,15 +91,14 @@
                      </children></Pane>
                   <Pane layoutX="9.0" layoutY="241.0" prefHeight="411.0" prefWidth="1031.0" style="-fx-background-color: #f1f1f1;">
                      <children>
-                        <TableView focusTraversable="false" prefHeight="411.0" prefWidth="1031.0">
+                        <TableView fx:id="tableView" focusTraversable="false" prefHeight="411.0" prefWidth="1031.0">
                           <columns>
-                            <TableColumn fx:id="id_etudiant" prefWidth="45.0" text="id" />
                             <TableColumn fx:id="matricule_etudiant" prefWidth="172.0" text="Matricule" />
                               <TableColumn fx:id="nom_etudiant" prefWidth="127.0" text="Nom Etudiant" />
                               <TableColumn fx:id="prenom_etudiant" prefWidth="155.0" text="Prenom Etudiant" />
                               <TableColumn fx:id="classe_etudiant" prefWidth="181.0" text="Classe Etudiant" />
                               <TableColumn fx:id="niveau_etudiant" prefWidth="192.0" text="Niveau classe" />
-                              <TableColumn fx:id="date_etudiant" prefWidth="158.0" text="Date d'inscription" />
+                              <TableColumn fx:id="date_etudiant" prefWidth="203.0" text="Date d'inscription" />
                           </columns>
                         </TableView>
                      </children></Pane>

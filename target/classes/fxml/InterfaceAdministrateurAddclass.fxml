@@ -67,7 +67,7 @@
                         <TextField fx:id="anneeclasse_input" layoutX="443.0" layoutY="44.0" prefHeight="31.0" prefWidth="205.0" promptText="1,2,3eme annee" />
                         <TextField fx:id="module_input" layoutX="17.0" layoutY="103.0" prefHeight="33.0" prefWidth="210.0" promptText="nombre de module " />
                         <Label layoutX="446.0" layoutY="27.0" text="Annee" />
-                        <Button fx:id="buttonajouter" layoutX="236.0" layoutY="103.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="85.0" style="-fx-background-color: #8eb486;" text="ajouter" textFill="WHITE">
+                        <Button fx:id="buttonajouter" layoutX="453.0" layoutY="103.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="85.0" style="-fx-background-color: #8eb486;" text="ajouter" textFill="WHITE">
                            <font>
                               <Font size="13.0" />
                            </font>
@@ -75,7 +75,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <Button fx:id="buttonvider" layoutX="327.0" layoutY="103.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="89.0" style="-fx-background-color: #FF2929;" text="vider" textFill="WHITE">
+                        <Button fx:id="buttonvider" layoutX="546.0" layoutY="103.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="89.0" style="-fx-background-color: #FF2929;" text="vider" textFill="WHITE">
                            <font>
                               <Font name="System Bold Italic" size="13.0" />
                            </font>
@@ -83,16 +83,18 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
+                        <TextField fx:id="option_input" layoutX="234.0" layoutY="103.0" prefHeight="33.0" prefWidth="210.0" />
+                        <Label layoutX="234.0" layoutY="86.0" text="option" />
                      </children></Pane>
                   <Pane layoutX="9.0" layoutY="241.0" prefHeight="411.0" prefWidth="1031.0" style="-fx-background-color: #f1f1f1;">
                      <children>
-                        <TableView focusTraversable="false" layoutY="-1.0" prefHeight="412.0" prefWidth="1031.0">
+                        <TableView fx:id="tableView" focusTraversable="false" layoutY="-1.0" prefHeight="412.0" prefWidth="1031.0">
                           <columns>
-                            <TableColumn fx:id="id_table" prefWidth="75.0" text="id" />
-                            <TableColumn fx:id="nomClasse_table" prefWidth="383.0" text="nom classe" />
-                              <TableColumn fx:id="niveauClasse_table" prefWidth="155.0" text="Niveau" />
-                              <TableColumn fx:id="anneeClasse_table" prefWidth="209.0" text="Annee" />
-                              <TableColumn fx:id="module_table" prefWidth="206.0" text="nombre de module" />
+                            <TableColumn fx:id="nomdelaclasse_column" prefWidth="264.0" text="nomdelaclasse" />
+                              <TableColumn fx:id="niveau_column" prefWidth="123.0" text="Niveau" />
+                              <TableColumn fx:id="annee_column" prefWidth="163.0" text="Annee" />
+                              <TableColumn fx:id="nombredemodule_column" prefWidth="143.0" text="nombredemodule" />
+                              <TableColumn fx:id="option_column" prefWidth="337.0" text="option" />
                           </columns>
                         </TableView>
                      </children></Pane>
