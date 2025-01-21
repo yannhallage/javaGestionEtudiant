@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="676.0" prefWidth="1224.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.monprojet.application.controller.InterfaceEtudiant">
+   <children>
+      <BorderPane layoutY="-14.0" prefHeight="688.0" prefWidth="1220.0">
+         <top>
+            <Pane prefHeight="75.0" prefWidth="1214.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
+               <children>
+                  <ImageView fitHeight="65.0" fitWidth="233.0" layoutX="7.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../picture/UTA.jpg" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="44.0" fitWidth="41.0" layoutX="1160.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../picture/user.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="1054.0" layoutY="29.0" style="-fx-font-weight: bold;" stylesheets="@../font/InterfaceEtudiant.css" text="Hallage Yann">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="11.0" fitWidth="9.0" layoutX="1192.0" layoutY="48.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../picture/72-727965_green-dot-png-circle-transparent-png.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+         </top>
+         <left>
+            <Pane prefHeight="661.0" prefWidth="1224.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
+               <children>
+                  <Pane layoutX="-2.0" prefHeight="55.0" prefWidth="1230.0" style="-fx-background-color: #8eb486;">
+                     <children>
+                        <ImageView fitHeight="30.0" fitWidth="31.0" layoutX="35.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../picture/1047690.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="67.0" layoutY="17.0" style="-fx-font-style: italic;" text="INFORMATIQUE GENIE LOGICIEL" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <ImageView fitHeight="30.0" fitWidth="31.0" layoutX="288.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../picture/account-icon-32.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="318.0" layoutY="16.0" style="-fx-font-weight: bold;" text="LICENCE 3EME ANNEE" textFill="WHITE">
+                           <font>
+                              <Font name="System Italic" size="14.0" />
+                           </font>
+                        </Label>
+                        <ImageView fitHeight="30.0" fitWidth="31.0" layoutX="472.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../picture/png-transparent-google-calendar-computer-icons-agenda-calendar-time-calendar-date-thumbnail.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="510.0" layoutY="15.0" style="-fx-font-style: italic;" text="ANNEE SCOLAIRE : 2024-2025" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <ImageView fx:id="sedeconnecter" fitHeight="27.0" fitWidth="30.0" layoutX="1163.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../picture/quitbutton.jpg" />
+                           </image>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </ImageView>
+                        <Label layoutX="716.0" layoutY="14.0" text="CONNECTER EN TANTQUE " textFill="WHITE">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Label>
+                        <Label layoutX="888.0" layoutY="14.0" text="ETUDIANT">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font></Label>
+                     </children>
+                  </Pane>
+                  <Pane layoutY="54.0" prefHeight="563.0" prefWidth="1224.0" style="-fx-background-color: #f1f1f1;">
+                     <children>
+                        <Separator layoutX="318.0" layoutY="485.0" prefHeight="0.0" prefWidth="592.0" />
+                        <Text layoutX="285.0" layoutY="515.0" opacity="0.61" strokeType="OUTSIDE" strokeWidth="0.0" text="An open-source prototype of both a “match 3” game and an old-school RPG with an infinite hallway and items to collect. These templates focus on modular design and project organization." textAlignment="CENTER" wrappingWidth="657.938720703125" />
+                     </children>
+                  </Pane>
+                  <TableView focusTraversable="false" layoutX="-1.0" layoutY="54.0" prefHeight="436.0" prefWidth="1224.0">
+                     <columns>
+                        <TableColumn prefWidth="58.0" text="CODE " />
+                        <TableColumn prefWidth="160.0" text="NOM DU MODULE" />
+                        <TableColumn minWidth="0.0" prefWidth="113.0" text="CLASSE " />
+                        <TableColumn minWidth="0.0" prefWidth="154.0" text="OPTION" />
+                        <TableColumn prefWidth="121.0" text="NIVEAU  MODULE" />
+                        <TableColumn prefWidth="114.0" text="HEUR MODULE" />
+                        <TableColumn prefWidth="149.0" text="HEUR ABSENCE" />
+                        <TableColumn prefWidth="132.0" text="NOMBRE ABSENCE" />
+                        <TableColumn prefWidth="222.0" text="ENSEIGNANT " />
+                     </columns>
+                  </TableView>
+                  
+               </children>
+            </Pane>
+         </left>
+         <center>
+            <!-- Conteneur où les cartes seront affichées -->
+            <Pane layoutX="50" layoutY="100" prefHeight="500.0" prefWidth="1120.0" style="-fx-background-color: #f0f0f0;">
+   <!-- Les cartes seront ajoutées ici -->
+			</Pane>
+
+         </center>
+      </BorderPane>
+   </children>
+</StackPane>

@@ -13,6 +13,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.io.IOException;
 
@@ -93,16 +95,72 @@ public class viewController {
         }
     }
 
-    private void openWindowInscription() {
+  
+    private void actionButton(Button buttonlogin) {
+        if (matricule.getText().isEmpty() || motdepasse.getText().isEmpty()) {
+            showErrorAlertEmpty();
+        } else if (matricule.getText().length() != 9) {
+            showErrorAlertLenght();
+        } else {
+            if (testDatabaseConnection()) {
+                System.out.println("Connexion à la base de données réussie");
+
+                // Vérifier les informations dans la base de données
+                String typeuser = validateCredentials(matricule.getText(), motdepasse.getText());
+                if (typeuser != null) {
+                    // Rediriger vers la fenêtre en fonction du type d'utilisateur
+                    switch (typeuser.toLowerCase()) {
+                        case "etudiant":
+                            openWindow("/fxml/InterfaceEtudiants.fxml", "Interface Étudiant");
+                            break;
+                        case "enseignant":
+                            openWindow("/fxml/InterfaceEnseignantClass.fxml", "Interface Enseignant");
+                            break;
+                        case "admin":
+                            openWindow("/fxml/InterfaceAdministrateur.fxml", "Interface Administrateur");
+                            break;
+                        default:
+                            showErrorAlertUnknownUserType();
+                    }
+                } else {
+                    showErrorAlertmdp(); // Matricule ou mot de passe incorrect
+                }
+            } else {
+                showErrorAlert(); // Erreur de connexion à la base de données
+            }
+        }
+    }
+
+    // Méthode pour valider les informations dans la base de données
+    private String validateCredentials(String matricule, String password) {
+        String typeuser = null;
+        String query = "SELECT typeuser FROM compte_utilisateur WHERE matricule = ? AND mot_de_passe = ?";
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setString(1, matricule);
+            stmt.setString(2, password);
+
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                typeuser = rs.getString("typeuser"); // Récupérer le type d'utilisateur
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return typeuser;
+    }
+
+    // Méthode générique pour ouvrir une nouvelle fenêtre
+    private void openWindow(String fxmlPath, String title) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/InterfaceAdministrateur.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
             StackPane root = loader.load();
 
             Stage currentStage = (Stage) matricule.getScene().getWindow();
             Stage stage = new Stage();
             Scene scene = new Scene(root);
             stage.setScene(scene);
-            stage.setTitle("Inscription");
+            stage.setTitle(title);
             stage.setResizable(false);
             stage.setOnCloseRequest(event -> currentStage.show());
 
@@ -113,27 +171,15 @@ public class viewController {
         }
     }
 
-    private void actionButton(Button buttonlogin) {
-        if (matricule.getText().isEmpty() || motdepasse.getText().isEmpty()) {
-            showErrorAlertEmpty();
-        } else if (matricule.getText().length() != 9) {
-            showErrorAlertLenght();
-        } else {
-            // Tester la connexion à la base de données
-            if (testDatabaseConnection()) {
-                System.out.println("Connexion à la base de données réussie");
-                // Vérification des informations d'identification
-                if (matricule.getText().equals(Admin) && motdepasse.getText().equals(mdp)) {
-                    openWindowInscription();  // Accéder à la page d'inscription si l'utilisateur est valide
-                } else {
-                    showErrorAlertmdp(); // Mot de passe incorrect
-                }
-            } else {
-                System.out.println("Erreur de connexion à la base de données");
-                showErrorAlert();  // Alerte de connexion échouée
-            }
-        }
+    // Alerte pour un type d'utilisateur inconnu
+    private void showErrorAlertUnknownUserType() {
+        Alert alert = new Alert(AlertType.ERROR);
+        alert.setTitle("Erreur");
+        alert.setHeaderText("Type d'utilisateur inconnu");
+        alert.setContentText("Le type d'utilisateur fourni n'est pas valide. Contactez l'administrateur.");
+        alert.showAndWait();
     }
+
 
     public void showErrorAlert() {
         Alert alert = new Alert(AlertType.ERROR);

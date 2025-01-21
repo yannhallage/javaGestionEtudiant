@@ -88,7 +88,7 @@ public class interfaceadministrateuradden {
 		                    showAlert("Erreur", "La taille du matricule doit absolument être de 9 caractères !");
 		                    clearelement(); // Vider les champs
 		                } else {
-		                	ajouterENS(nom,matricule,prenom, numero_tel ,mail);
+		                	ajouterENS(matricule,nom,prenom, numero_tel ,mail);
 			                loadENS(); // Recharger les classes dans la table
 			                clearelement(); // Vider les champs
 		                }
