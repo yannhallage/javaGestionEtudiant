@@ -37,3 +37,8 @@
 .register-link{
 	-fx-color : blue;
 }
+
+.table-view .column-header {
+    -fx-background-color: #4CAF50; /* Fond vert */
+    -fx-text-fill: white;         /* Texte blanc */
+}

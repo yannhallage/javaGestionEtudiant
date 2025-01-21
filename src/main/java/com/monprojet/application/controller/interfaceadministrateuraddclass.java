@@ -50,8 +50,7 @@ public class interfaceadministrateuraddclass {
     private TableColumn<Classe, String> annee_column;
     @FXML
     private TableColumn<Classe, String> nombredemodule_column;
-    @FXML
-    private TableColumn<Classe, String> option_column;
+    
 
     private ObservableList<Classe> classes = FXCollections.observableArrayList();
 
@@ -73,7 +72,7 @@ public class interfaceadministrateuraddclass {
         niveau_column.setCellValueFactory(new PropertyValueFactory<>("niveau"));
         annee_column.setCellValueFactory(new PropertyValueFactory<>("annee"));
         nombredemodule_column.setCellValueFactory(new PropertyValueFactory<>("nombreDeModule"));
-        option_column.setCellValueFactory(new PropertyValueFactory<>("options"));
+        //option_column.setCellValueFactory(new PropertyValueFactory<>("options"));
 
         // Charger les données des classes depuis la base de données
         loadClasses();
@@ -107,15 +106,15 @@ public class interfaceadministrateuraddclass {
 
     // Méthode pour ajouter une classe dans la base de données
     private void ajouterClasse(String nomdelaclasse, String niveau, String annee, String nombredemodule, String option) {
-        String sql = "INSERT INTO classe (specialite, option_s, niveau, nbr_module, annee) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO classe (specialite, niveau, nbr_module, annee) VALUES (?, ?, ?, ?)";
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
             pstmt.setString(1, nomdelaclasse);
-            pstmt.setString(2, option);
-            pstmt.setString(3, niveau);
-            pstmt.setString(4, nombredemodule);
-            pstmt.setString(5, annee);
+            //pstmt.setString(2, option);
+            pstmt.setString(2, niveau);
+            pstmt.setString(3, nombredemodule);
+            pstmt.setString(4, annee);
 
             int rowsAffected = pstmt.executeUpdate();
             if (rowsAffected > 0) {
@@ -144,9 +143,9 @@ public class interfaceadministrateuraddclass {
                 String niveau = rs.getString("niveau");
                 String annee = rs.getString("annee");
                 String nombredemodule = rs.getString("nbr_module");
-                String option = rs.getString("option_s");
+                //String option = rs.getString("option_s");
 
-                Classe classe = new Classe(nomdelaclasse, niveau, annee, nombredemodule, option);
+                Classe classe = new Classe(nomdelaclasse, niveau, annee, nombredemodule);
                 classes.add(classe); // Ajouter la classe à la liste
             }
 

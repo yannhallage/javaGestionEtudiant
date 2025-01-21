@@ -12,6 +12,10 @@ import javafx.scene.Scene;
 
 public class InterfaceAdministrateur {
 
+/*public void initialize() {
+    Pane.getStylesheets().add(getClass().getResource("/styles.css").toExternalForm());
+
+}*/
     // Méthode générique pour ouvrir une nouvelle fenêtre
  private void openWindow(String fxmlFile, MouseEvent event) {
     try {

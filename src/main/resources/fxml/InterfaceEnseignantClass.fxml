@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="661.0" prefWidth="1224.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="661.0" prefWidth="1224.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.monprojet.application.controller.InterfaceEnseignantClass">
    <children>
       <BorderPane prefHeight="200.0" prefWidth="200.0">
          <top>
@@ -44,11 +44,10 @@
                   </Label>
                   <TableView fx:id="tableView" focusTraversable="false" layoutX="91.0" layoutY="94.0" prefHeight="393.0" prefWidth="1060.0">
                     <columns>
-                      <TableColumn fx:id="nomdelaclasse" prefWidth="291.0" text="NOM DE LA CLASSE" />
-                      <TableColumn fx:id="option" prefWidth="268.0" text="OPTION" />
-                        <TableColumn fx:id="niveau" prefWidth="149.0" text="NIVEAU" />
-                        <TableColumn fx:id="module" prefWidth="149.0" text="MODULE" />
-                        <TableColumn fx:id="action" prefWidth="201.0" text="ACTION" />
+                      <TableColumn fx:id="nomdelaclasse" prefWidth="375.0" style="-fx-font-size: 16px; -fx-alignment: center;" text="NOM DE LA CLASSE" />
+                        <TableColumn fx:id="module" prefWidth="420.0" style="-fx-font-size: 16px; -fx-alignment: center;" text="MODULE" />
+                        <TableColumn fx:id="niveau" prefWidth="175.0" style="-fx-font-size: 16px; -fx-alignment: center;" text="NIVEAU" />
+                        <TableColumn fx:id="action" prefWidth="88.0" style="-fx-font-size: 16px; -fx-alignment: center;" text="ACTION" />
                     </columns>
                   </TableView>
                </children>

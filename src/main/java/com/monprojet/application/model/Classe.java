@@ -6,14 +6,14 @@ public class Classe {
     private String niveau;
     private String annee;
     private String nombreDeModule;
-    private String options;
+    //private String options;
     
-    public Classe(String nomDeLaClasse, String niveau, String annee, String nombreDeModule, String options) {
+    public Classe(String nomDeLaClasse, String niveau, String annee, String nombreDeModule) {
         this.nomDeLaClasse = nomDeLaClasse;
         this.niveau = niveau;
         this.annee = annee;
         this.nombreDeModule = nombreDeModule;
-        this.options = options;
+       //this.options = options;
     }
 
     // Getters et setters
@@ -50,11 +50,11 @@ public class Classe {
         this.nombreDeModule = nombreDeModule;
     }
 
-    public String getOptions() {
+    /*public String getOptions() {
         return options;
     }
 
     public void setOptions(String options) {
         this.options = options;
-    }
+    }*/
 }

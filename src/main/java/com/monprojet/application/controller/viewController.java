@@ -17,6 +17,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.io.IOException;
+import java.util.prefs.Preferences;
 
 public class viewController {
 
@@ -55,6 +56,7 @@ public class viewController {
             }
         }
     }
+
     private boolean testDatabaseConnection() {
         try (Connection conn = DatabaseConnection.getConnection()) {
             if (conn != null) {
@@ -69,6 +71,9 @@ public class viewController {
 
     @FXML
     public void initialize() {
+        // Charger les données de connexion si disponibles
+        loadConnectionData();
+
         // Ajouter l'action au lien
         registerlink.setOnAction(event -> openWindowInscription(registerlink));
         buttonlogin.setOnAction(event -> actionButton(buttonlogin));
@@ -95,7 +100,6 @@ public class viewController {
         }
     }
 
-  
     private void actionButton(Button buttonlogin) {
         if (matricule.getText().isEmpty() || motdepasse.getText().isEmpty()) {
             showErrorAlertEmpty();
@@ -108,6 +112,9 @@ public class viewController {
                 // Vérifier les informations dans la base de données
                 String typeuser = validateCredentials(matricule.getText(), motdepasse.getText());
                 if (typeuser != null) {
+                    // Sauvegarder les informations de connexion si elles sont valides
+                    saveConnectionData(matricule.getText(), motdepasse.getText());
+
                     // Rediriger vers la fenêtre en fonction du type d'utilisateur
                     switch (typeuser.toLowerCase()) {
                         case "etudiant":
@@ -171,6 +178,27 @@ public class viewController {
         }
     }
 
+    // Méthode pour sauvegarder les données de connexion dans les préférences
+    private void saveConnectionData(String matricule, String password) {
+        Preferences prefs = Preferences.userNodeForPackage(getClass());
+        prefs.put("matricule", matricule);  // Sauvegarde du matricule
+        prefs.put("password", password);    // Sauvegarde du mot de passe
+    }
+
+    // Méthode pour charger les données de connexion depuis les préférences
+    private void loadConnectionData() {
+        Preferences prefs = Preferences.userNodeForPackage(getClass());
+        String matriculeSaved = prefs.get("matricule", "");  // Valeur par défaut : chaîne vide
+        String passwordSaved = prefs.get("password", "");    // Valeur par défaut : chaîne vide
+
+        if (!matriculeSaved.isEmpty()) {
+            matricule.setText(matriculeSaved);  // Remplir le champ matricule
+        }
+        if (!passwordSaved.isEmpty()) {
+            motdepasse.setText(passwordSaved);  // Remplir le champ mot de passe
+        }
+    }
+
     // Alerte pour un type d'utilisateur inconnu
     private void showErrorAlertUnknownUserType() {
         Alert alert = new Alert(AlertType.ERROR);
@@ -179,7 +207,6 @@ public class viewController {
         alert.setContentText("Le type d'utilisateur fourni n'est pas valide. Contactez l'administrateur.");
         alert.showAndWait();
     }
-
 
     public void showErrorAlert() {
         Alert alert = new Alert(AlertType.ERROR);
