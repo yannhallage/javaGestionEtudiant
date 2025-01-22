@@ -68,7 +68,7 @@
                   </Label>
                   <Pane layoutX="8.0" layoutY="104.0" prefHeight="117.0" prefWidth="1035.0" style="-fx-background-color: #f1f1f1;">
                      <children>
-                        <Label fx:id="module" layoutX="52.0" layoutY="50.0" text="DEVELOPPEMENT WEB ">
+                        <Label fx:id="module" layoutX="27.0" layoutY="50.0" text="DEVELOPPEMENT WEB ">
                            <font>
                               <Font size="18.0" />
                            </font>
@@ -78,7 +78,7 @@
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <Text fx:id="nomClasse" layoutX="339.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="INFO-INFORMATIQUE DEVELOPPEUR APPICATION" wrappingWidth="272.119140625">
+                        <Text fx:id="nomClasse" layoutX="322.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="INFO-INFORMATIQUE DEVELOPPEUR APPICATION" wrappingWidth="272.119140625">
                            <font>
                               <Font size="18.0" />
                            </font>
@@ -91,6 +91,7 @@
                         <Label layoutX="841.0" layoutY="12.0" text="heure" />
                         <Button fx:id="valider" layoutX="863.0" layoutY="74.0" mnemonicParsing="false" text="valider" />
                         <DatePicker fx:id="dateABS" layoutX="683.0" layoutY="74.0" />
+                        <Separator layoutX="270.0" layoutY="7.0" orientation="VERTICAL" prefHeight="104.0" prefWidth="6.0" />
                      </children></Pane>
                   <Pane layoutX="9.0" layoutY="241.0" prefHeight="411.0" prefWidth="1031.0" style="-fx-background-color: #f1f1f1;">
                      <children>
