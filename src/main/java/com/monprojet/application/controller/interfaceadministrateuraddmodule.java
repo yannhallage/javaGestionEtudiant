@@ -44,6 +44,9 @@ public class interfaceadministrateuraddmodule {
 	    private TextField dispenseENmodule;
 	    @FXML
 	    private TextField classeModule;
+	    @FXML
+	    private TextField niveauM;
+	    
 	    
 	    @FXML
 	    private TableView<Module> tableView;
@@ -60,6 +63,8 @@ public class interfaceadministrateuraddmodule {
 
 	    @FXML
 	    private TableColumn<Module ,String> idmodule;
+	    @FXML
+	    private TableColumn<Module ,String> niveau;
 
 	    @FXML
 	    private TableColumn<Module ,String> nommodule;
@@ -76,6 +81,7 @@ public class interfaceadministrateuraddmodule {
 	        enseignantmodule.setCellValueFactory(new PropertyValueFactory<>("dispenseENModule"));
 	        classedispensemodule.setCellValueFactory(new PropertyValueFactory<>("classeModule"));
 	        idmodule.setCellValueFactory(new PropertyValueFactory<>("idModule"));
+	        niveau.setCellValueFactory(new PropertyValueFactory<>("niveau"));
 	        
 	        loadModule();
 	        
@@ -88,13 +94,14 @@ public class interfaceadministrateuraddmodule {
 	            String dispenseenmodule = dispenseENmodule.getText();
 	            String classemodule = classeModule.getText();
 	            String idmodule = codeModule.getText();
+	            String niveau = niveauM.getText();
 	         
 	            // Valider les données (exemple de validation simple)
-	            if (nommodule.isEmpty() || ecuemodule.isEmpty() || heurmodule.isEmpty() || dispenseenmodule.isEmpty() || classemodule.isEmpty()) {
+	            if (nommodule.isEmpty() || ecuemodule.isEmpty() || heurmodule.isEmpty() || dispenseenmodule.isEmpty() || classemodule.isEmpty() || niveau.isEmpty()) {
 	                showAlert("Erreur", "Veuillez remplir tous les champs !");
 	            } else {
 	                
-	            	ajouterModule(idmodule,nommodule,ecuemodule,heurmodule,dispenseenmodule,classemodule);
+	            	ajouterModule(idmodule,nommodule,ecuemodule,heurmodule,dispenseenmodule,classemodule,niveau);
 	                loadModule(); // Recharger les classes dans la table
 	                clearelement(); // Vider les champs
 	            }
@@ -113,15 +120,20 @@ public class interfaceadministrateuraddmodule {
 	        
 	    
 	    // Méthode pour ajouter une classe dans la base de données
-	    private void ajouterModule(String idmodule ,String nommodule , String ecue,String heurmodule, String enseignantmodule , String classedispensemodule) {
+	    private void ajouterModule(String idmodule ,String nommodule , String ecue,String heurmodule, String enseignantmodule , String classedispensemodule ,String niveau) {
 	    	 String idENS = getIdENS(enseignantmodule); // Vérifier si l'enseignant qui dispense ce module existe
+	    	 String CLASS = getClass(classedispensemodule,niveau);
 	    	 
 	    	 if (idENS == null) {
 	    		 showAlert("Erreur", "L'enseignant avec le matricule '" + enseignantmodule + "' n'existe pas dans la base de données.");
 	             return;
 	         }
+	    	 if (CLASS == null) {
+	    		 showAlert("Erreur", "La classe '" + classedispensemodule + "' n'existe pas dans la base de données.");
+	             return; 
+	    	 }
 	    	 
-	        String sql = "INSERT INTO module (code , intitule , ecue , heurmodule, enseignantmodule , classedispensemodule, id_enseig) VALUES (?, ?, ?, ?, ?, ?, ?)";
+	        String sql = "INSERT INTO module (code , intitule , ecue , heurmodule, enseignantmodule , classedispensemodule,niveau, id_enseig) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 	        try (Connection conn = DatabaseConnection.getConnection();
 	             PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
@@ -130,8 +142,9 @@ public class interfaceadministrateuraddmodule {
 	            pstmt.setString(3, ecue);
 	            pstmt.setString(4, heurmodule);
 	            pstmt.setString(5, enseignantmodule);
-	            pstmt.setString(6, classedispensemodule);
-	            pstmt.setString(7, idENS);
+	            pstmt.setString(6, CLASS);
+	            pstmt.setString(7, niveau);
+	            pstmt.setString(8, idENS);
 
 	            int rowsAffected = pstmt.executeUpdate();
 	            if (rowsAffected > 0) {
@@ -168,6 +181,31 @@ public class interfaceadministrateuraddmodule {
 	        }
 	    }
 	    
+	    private String getClass(String specialite, String niveau) {
+	        String sql = "SELECT specialite FROM classe WHERE specialite = ? AND niveau = ?";
+	        try (Connection conn = DatabaseConnection.getConnection();
+	             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+	            // Assigner les paramètres à la requête préparée
+	            pstmt.setString(1, specialite);
+	            pstmt.setString(2, niveau);
+
+	            // Exécuter la requête
+	            ResultSet rs = pstmt.executeQuery();
+
+	            // Vérifier le résultat
+	            if (rs.next()) {
+	                return rs.getString("specialite"); // Retourne la spécialité si trouvée
+	            } else {
+	                return null; // Retourne null si aucun résultat
+	            }
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	            showAlert("Erreur", "Erreur lors de la vérification de la classe : " + e.getMessage());
+	            return null;
+	        }
+	    }
+
 	    // Méthode pour charger les classes depuis la base de données
 	    private void loadModule() {
 	        String sql = "SELECT * FROM module";
@@ -185,8 +223,9 @@ public class interfaceadministrateuraddmodule {
 	                String dispenseENModule = rs.getString("enseignantmodule");
 	                String classeModule = rs.getString("classedispensemodule");
 	                String idModule = rs.getString("code");
+	                String niveau = rs.getString("niveau");
 	                
-	                Module module = new Module(nomDuModule,ecueModule,heurModule,dispenseENModule,classeModule,idModule);
+	                Module module = new Module(nomDuModule,ecueModule,heurModule,dispenseENModule,classeModule,idModule,niveau);
 	                ModuleList.add(module); // Ajouter la classe à la liste
 	            }
 
@@ -214,7 +253,8 @@ public class interfaceadministrateuraddmodule {
 	        	ecueModule.clear();
 	        	heurModule.clear();
 	        	dispenseENmodule.clear();
-	        	classeModule.clear();	
+	        	classeModule.clear();
+	        	niveauM.clear();
 	        
 	    }
 }

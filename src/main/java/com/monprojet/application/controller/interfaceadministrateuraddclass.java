@@ -35,8 +35,7 @@ public class interfaceadministrateuraddclass {
     private TextField anneeclasse_input;
     @FXML
     private TextField module_input;
-    @FXML
-    private TextField option_input;
+   
 
     // TableView
     @FXML
@@ -84,14 +83,14 @@ public class interfaceadministrateuraddclass {
             String niveau = niveauclasse_input.getText();
             String annee = anneeclasse_input.getText();
             String nombredemodule = module_input.getText();
-            String option = option_input.getText();
+            //String option = option_input.getText();
 
             // Valider les données (exemple de validation simple)
-            if (nomdelaclasse.isEmpty() || niveau.isEmpty() || annee.isEmpty() || nombredemodule.isEmpty() || option.isEmpty()) {
+            if (nomdelaclasse.isEmpty() || niveau.isEmpty() || annee.isEmpty() || nombredemodule.isEmpty() ) {
                 showAlert("Erreur", "Veuillez remplir tous les champs !");
             } else {
                 // Ajouter la classe à la base de données
-                ajouterClasse(nomdelaclasse, niveau, annee, nombredemodule, option);
+                ajouterClasse(nomdelaclasse, niveau, annee, nombredemodule);
                 loadClasses(); // Recharger les classes dans la table
                 clearelement(); // Vider les champs
             }
@@ -105,7 +104,7 @@ public class interfaceadministrateuraddclass {
     }
 
     // Méthode pour ajouter une classe dans la base de données
-    private void ajouterClasse(String nomdelaclasse, String niveau, String annee, String nombredemodule, String option) {
+    private void ajouterClasse(String nomdelaclasse, String niveau, String annee, String nombredemodule) {
         String sql = "INSERT INTO classe (specialite, niveau, nbr_module, annee) VALUES (?, ?, ?, ?)";
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -173,6 +172,6 @@ public class interfaceadministrateuraddclass {
         niveauclasse_input.clear();
         anneeclasse_input.clear();
         module_input.clear();
-        option_input.clear();
+        //option_input.clear();
     }
 }

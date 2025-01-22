@@ -8,15 +8,17 @@ public class Module {
 	    private String heurModule;
 	    private String dispenseENModule;
 	    private String classeModule;
+	    private String niveau;
 	    
 	    
-	    public Module(String nomDuModule, String ecueModule, String heurModule, String dispenseENModule, String classeModule, String idModule) {
+	    public Module(String nomDuModule, String ecueModule, String heurModule, String dispenseENModule, String classeModule, String idModule, String niveau) {
 	        this.nomDuModule = nomDuModule;
 	        this.ecueModule= ecueModule;
 	        this.heurModule = heurModule;
 	        this.dispenseENModule = dispenseENModule;
 	        this.classeModule = classeModule;
 	        this.idModule = idModule;
+	        this.niveau = niveau;
 	    }
 	    
 	    // Getters et setters
@@ -30,6 +32,9 @@ public class Module {
 
 	    public String getEcueModule() {
 	        return ecueModule;
+	    }
+	    public String getNiveau() {
+	        return niveau;
 	    }
 
 	    public void setEcueModule(String ecueModule) {
@@ -66,5 +71,8 @@ public class Module {
 
 	    public void setIdModule(String idModule) {
 	        this.idModule = idModule;
+	    }
+	    public void setNiveau(String niveau) {
+	    	this .niveau = niveau;
 	    }
 }
