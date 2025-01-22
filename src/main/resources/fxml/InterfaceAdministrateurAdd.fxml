@@ -88,6 +88,14 @@
                         </Button>
                         <DatePicker fx:id="inputdateinscription" layoutX="444.0" layoutY="105.0" prefHeight="31.0" prefWidth="205.0" />
                         <Label layoutX="444.0" layoutY="86.0" text="Date d'inscription" />
+                        <TextField fx:id="deletedEtudiant" layoutX="803.0" layoutY="73.0" prefHeight="38.0" prefWidth="214.0" promptText="Entrez le matricule " />
+                        <Label layoutX="803.0" layoutY="56.0" text="Matricule etudiant" />
+                        <Button fx:id="buttonSupprimer" layoutX="946.0" layoutY="116.0" mnemonicParsing="false" text="supprimer" />
+                        <Label layoutX="803.0" layoutY="19.0" text="SUPPRIMER ETUDIANT">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Label>
                      </children></Pane>
                   <Pane layoutX="9.0" layoutY="241.0" prefHeight="411.0" prefWidth="1031.0" style="-fx-background-color: #f1f1f1;">
                      <children>
