@@ -85,6 +85,14 @@
                         </Button>
                         <Label layoutX="238.0" layoutY="88.0" text="numero de telephone" />
                         <TextField fx:id="telephone" layoutX="236.0" layoutY="107.0" prefHeight="25.0" prefWidth="140.0" promptText="tel" />
+                        <Label layoutX="696.0" layoutY="52.0" text="Matricule" />
+                        <TextField fx:id="matriculeENSEI_delete" layoutX="696.0" layoutY="73.0" prefHeight="36.0" prefWidth="208.0" promptText="entrer le matricule" />
+                        <Button fx:id="button_supprimer" layoutX="832.0" layoutY="120.0" mnemonicParsing="false" text="supprimer" />
+                        <Label layoutX="696.0" layoutY="19.0" text="SUPPRIMER UN ENSEIGNANT">
+                           <font>
+                              <Font name="System Bold Italic" size="14.0" />
+                           </font>
+                        </Label>
                      </children></Pane>
                   <Pane layoutX="9.0" layoutY="241.0" prefHeight="411.0" prefWidth="1031.0" style="-fx-background-color: #f1f1f1;">
                      <children>

@@ -83,6 +83,14 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
+                        <Label layoutX="690.0" layoutY="27.0" text="SUPPRIMER UNE CLASSE">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="690.0" layoutY="60.0" text="Nom de la classe" />
+                        <TextField fx:id="suprimerClasse" layoutX="690.0" layoutY="76.0" prefHeight="33.0" prefWidth="228.0" promptText="Supprimer une classe" />
+                        <Button fx:id="buttonSupprimerClasse" layoutX="846.0" layoutY="120.0" mnemonicParsing="false" text="Supprimer" />
                      </children></Pane>
                   <Pane layoutX="9.0" layoutY="241.0" prefHeight="411.0" prefWidth="1031.0" style="-fx-background-color: #f1f1f1;">
                      <children>

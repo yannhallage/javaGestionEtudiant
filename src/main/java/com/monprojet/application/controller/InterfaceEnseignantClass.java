@@ -6,6 +6,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.prefs.Preferences;
 
 import com.monprojet.application.model.EnseignantClass;
@@ -27,6 +29,7 @@ import javafx.util.Callback;
 
 public class InterfaceEnseignantClass {
 
+	
     @FXML
     private TableColumn<EnseignantClass, String> module;
 
@@ -123,13 +126,15 @@ public class InterfaceEnseignantClass {
 
     private void loadEnseignantModules() {
         String sqlModule = "SELECT intitule, classedispensemodule FROM module WHERE enseignantmodule = ?";
-        String sqlClasse = "SELECT specialite, niveau FROM classe WHERE specialite = ?";
+        String sqlClasse = "SELECT niveau FROM classe WHERE specialite = ?";
 
         try (Connection conn = DatabaseConnection.getConnection()) {
+            // Préparation de la requête pour les modules
             try (PreparedStatement pstmtModule = conn.prepareStatement(sqlModule)) {
                 Preferences prefs = Preferences.userNodeForPackage(InterfaceEnseignantClass.class);
                 String matricule = prefs.get("matricule", null);
 
+                // Vérification du matricule
                 if (matricule == null || matricule.isEmpty()) {
                     showAlert("Erreur", "Le matricule de l'enseignant n'est pas défini.");
                     return;
@@ -138,27 +143,35 @@ public class InterfaceEnseignantClass {
                 pstmtModule.setString(1, matricule);
 
                 try (ResultSet rsModule = pstmtModule.executeQuery()) {
-                    enseignantclass.clear();
+                    enseignantclass.clear(); // Nettoyage de la liste avant de la remplir
+
+                    // Pour éviter les doublons
+                    Set<String> processedClasses = new HashSet<>();
 
                     while (rsModule.next()) {
                         String module = rsModule.getString("intitule");
                         String classes = rsModule.getString("classedispensemodule");
 
-                        try (PreparedStatement pstmtClasse = conn.prepareStatement(sqlClasse)) {
-                            pstmtClasse.setString(1, classes);
+                        // Vérification si la classe a déjà été traitée
+                        if (!processedClasses.contains(classes)) {
+                            try (PreparedStatement pstmtClasse = conn.prepareStatement(sqlClasse)) {
+                                pstmtClasse.setString(1, classes);
 
-                            try (ResultSet rsClasse = pstmtClasse.executeQuery()) {
-                                if (rsClasse.next()) {
-                                    String nomdelaclasse = rsClasse.getString("specialite");
-                                    String niveau = rsClasse.getString("niveau");
+                                try (ResultSet rsClasse = pstmtClasse.executeQuery()) {
+                                    while (rsClasse.next()) { // Traitement de plusieurs niveaux s'il y en a
+                                        String niveau = rsClasse.getString("niveau");
 
-                                    EnseignantClass enseignant = new EnseignantClass(nomdelaclasse, niveau, module);
-                                    enseignantclass.add(enseignant);
+                                        // Création et ajout de l'objet dans la liste
+                                        EnseignantClass enseignant = new EnseignantClass(classes, niveau, module);
+                                        enseignantclass.add(enseignant);
+                                    }
                                 }
                             }
+                            processedClasses.add(classes); // Marque la classe comme traitée
                         }
                     }
 
+                    // Mise à jour de la TableView
                     tableView.setItems(enseignantclass);
                 }
             }
@@ -167,6 +180,7 @@ public class InterfaceEnseignantClass {
             showAlert("Erreur", "Impossible de charger les données : " + e.getMessage());
         }
     }
+
 
     private void showAlert(String title, String content) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);

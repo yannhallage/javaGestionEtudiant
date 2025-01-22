@@ -41,7 +41,7 @@ public class InterfaceEnseignantDashboard {
 
     @FXML
     private TextField absenceMatricule;
-
+    
     @FXML
     private DatePicker dateABS;
 
@@ -138,6 +138,9 @@ public class InterfaceEnseignantDashboard {
                 clearelement();  // Vider les champs
             }
         });
+        
+        
+        
 
 
         // Action pour le bouton "Vider"
@@ -147,34 +150,73 @@ public class InterfaceEnseignantDashboard {
         quitter.setOnAction(event -> System.exit(0)); // Fermer l'application
     }
     private void ajouterAbsence(String matricule_table2, String heur2, String dateInscription) {
-    	Preferences prefs = Preferences.userNodeForPackage(InterfaceEnseignantClass.class);
-        //String username = prefs.get("matricule", "default");
-        //System.out.println("Matricule de l'enseignant : " + username);
-        
-        String sql = "INSERT INTO absence (date_abs, heure_abs, id_enseig, id_etud, id_module) VALUES (?, ?, ?, ?, ?)";
-        try (Connection conn = DatabaseConnection.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+        Preferences prefs = Preferences.userNodeForPackage(InterfaceEnseignantClass.class);
+        String matriculeEnseignant = prefs.get("matricule", null);
+        String module = prefs.get("module", null);
 
-            // Définir les valeurs des paramètres
-            pstmt.setString(1, dateInscription);
-            pstmt.setString(2, heur2);
-            pstmt.setString(3, prefs.get("matricule", "default")); // Matricule de l'enseignant
-            pstmt.setString(4, matricule_table2);                  // Matricule de l'étudiant
-            pstmt.setString(5, prefs.get("module", "default"));   // Module enseigné
+        if (matriculeEnseignant == null || matriculeEnseignant.isEmpty()) {
+            showAlert("Erreur", "Le matricule de l'enseignant n'est pas défini.");
+            return;
+        }
+        if (module == null || module.isEmpty()) {
+            showAlert("Erreur", "Le module n'est pas défini.");
+            return;
+        }
 
-            // Exécuter la requête
-            int rowsAffected = pstmt.executeUpdate();
-            if (rowsAffected > 0) {
-                showAlert("Succès", "Étudiant ajouté avec succès à la base de données !");
-            } else {
-                showAlert("Erreur", "Une erreur s'est produite lors de l'ajout à la base de données.");
+        String sqlGetEnseignantId = "SELECT num FROM enseignant WHERE matricule = ?";
+        String sqlGetModuleId = "SELECT code FROM module WHERE intitule = ?";
+        String sqlInsertAbsence = "INSERT INTO absence (date_abs, heure_abs, id_enseig, id_etud, id_module) VALUES (?, ?, ?, ?, ?)";
+
+        try (Connection conn = DatabaseConnection.getConnection()) {
+            // Récupérer l'ID de l'enseignant
+            int idEnseignant = -1;
+            try (PreparedStatement pstmt1 = conn.prepareStatement(sqlGetEnseignantId)) {
+                pstmt1.setString(1, matriculeEnseignant);
+                try (ResultSet rs = pstmt1.executeQuery()) {
+                    if (rs.next()) {
+                        idEnseignant = rs.getInt("num");
+                    } else {
+                        showAlert("Erreur", "Aucun enseignant trouvé pour le matricule : " + matriculeEnseignant);
+                        return;
+                    }
+                }
             }
 
+            // Récupérer l'ID du module
+            String idModule = null;
+            try (PreparedStatement pstmt2 = conn.prepareStatement(sqlGetModuleId)) {
+                pstmt2.setString(1, module);
+                try (ResultSet rs = pstmt2.executeQuery()) {
+                    if (rs.next()) {
+                        idModule = rs.getString("code");
+                    } else {
+                        showAlert("Erreur", "Aucun module trouvé pour l'intitulé : " + module);
+                        return;
+                    }
+                }
+            }
+
+            // Insérer l'absence
+            try (PreparedStatement pstmt3 = conn.prepareStatement(sqlInsertAbsence)) {
+                pstmt3.setString(1, dateInscription);
+                pstmt3.setString(2, heur2);
+                pstmt3.setInt(3, idEnseignant); // ID de l'enseignant
+                pstmt3.setString(4, matricule_table2); // Matricule de l'étudiant
+                pstmt3.setString(5, idModule); // ID du module
+
+                int rowsAffected = pstmt3.executeUpdate();
+                if (rowsAffected > 0) {
+                    showAlert("Succès", "L'absence a été ajoutée avec succès !");
+                } else {
+                    showAlert("Erreur", "Une erreur s'est produite lors de l'ajout de l'absence.");
+                }
+            }
         } catch (SQLException e) {
             e.printStackTrace();
-            showAlert("Erreur", "Impossible d'ajouter l'étudiant : " + e.getMessage());
+            showAlert("Erreur", "Impossible d'ajouter l'absence : " + e.getMessage());
         }
     }
+
 
 
 	private void addActionButtonToTable() {
@@ -188,6 +230,7 @@ public class InterfaceEnseignantDashboard {
                         MarquageEnseignant data = getTableView().getItems().get(getIndex());
                         // Afficher les données de l'étudiant dans la console
                         System.out.println("Bouton cliqué pour : " +  data.getMatricule_table() );
+                        absenceMatricule.setText(data.getMatricule_table());
                         
                         // Appel à une méthode (optionnel)
                         // envoiesurledash(data.getNomdelaclasse(), data.getNiveau(), data.getModule(), true);
@@ -305,7 +348,6 @@ public class InterfaceEnseignantDashboard {
 	    }
 	}
 
-
     
     private void readPreferences() {
         Preferences prefs = Preferences.userNodeForPackage(InterfaceEnseignantClass.class);
@@ -322,8 +364,8 @@ public class InterfaceEnseignantDashboard {
 
     // Méthode pour vider les champs
     private void clearelement() {
-    	absenceMatricule.getText();
-    	Heur.getText();
+    	absenceMatricule.setText(null) ;
+    	Heur.clear();
         dateABS.setValue(null);
         
     }

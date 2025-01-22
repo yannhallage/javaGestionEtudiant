@@ -84,7 +84,7 @@
                            </font>
                         </Text>
                         <Separator layoutX="662.0" layoutY="6.0" orientation="VERTICAL" prefHeight="104.0" prefWidth="6.0" />
-                        <TextField fx:id="absenceMatricule" layoutX="682.0" layoutY="27.0" />
+                        <TextField fx:id="absenceMatricule" disable="true" layoutX="682.0" layoutY="27.0" />
                         <TextField fx:id="Heur" layoutX="841.0" layoutY="27.0" />
                         <Label layoutX="683.0" layoutY="12.0" text="matricule" />
                         <Label layoutX="683.0" layoutY="54.0" text="date absence" />
