@@ -4,6 +4,7 @@ H:\app-java\gestion-etudiants\src\main\java\com\monprojet\application\controller
 H:\app-java\gestion-etudiants\src\main\java\com\monprojet\application\controller\interfaceadministrateuradden.java
 H:\app-java\gestion-etudiants\src\main\java\com\monprojet\application\controller\interfaceadministrateuraddmodule.java
 H:\app-java\gestion-etudiants\src\main\java\com\monprojet\application\controller\InterfaceEnseignantClass.java
+H:\app-java\gestion-etudiants\src\main\java\com\monprojet\application\controller\InterfaceEnseignantDashboard.java
 H:\app-java\gestion-etudiants\src\main\java\com\monprojet\application\controller\InterfaceEtudiant.java
 H:\app-java\gestion-etudiants\src\main\java\com\monprojet\application\controller\viewController.java
 H:\app-java\gestion-etudiants\src\main\java\com\monprojet\application\controller\windowInscription.java
@@ -12,4 +13,5 @@ H:\app-java\gestion-etudiants\src\main\java\com\monprojet\application\model\Clas
 H:\app-java\gestion-etudiants\src\main\java\com\monprojet\application\model\Enseignant.java
 H:\app-java\gestion-etudiants\src\main\java\com\monprojet\application\model\EnseignantClass.java
 H:\app-java\gestion-etudiants\src\main\java\com\monprojet\application\model\Etudiant.java
+H:\app-java\gestion-etudiants\src\main\java\com\monprojet\application\model\MarquageEnseignant.java
 H:\app-java\gestion-etudiants\src\main\java\com\monprojet\application\model\Module.java

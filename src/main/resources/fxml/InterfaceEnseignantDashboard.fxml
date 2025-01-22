@@ -15,7 +15,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="671.0" prefWidth="1324.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="671.0" prefWidth="1324.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.monprojet.application.controller.InterfaceEnseignantDashboard">
    <children>
       <BorderPane prefHeight="200.0" prefWidth="200.0">
          <left>
@@ -26,13 +26,13 @@
                         <Image url="@../picture/avatar-account-icon-default-social-media-profile-photo-vector-Photoroom.png" />
                      </image>
                   </ImageView>
-                  <Label layoutX="68.0" layoutY="152.0" text="YANN HALLAGE">
+                  <Label fx:id="nomEn" layoutX="68.0" layoutY="152.0" text="YANN HALLAGE">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Label>
                   <Separator layoutX="36.0" layoutY="222.0" prefWidth="200.0" />
-                  <Label layoutX="105.0" layoutY="364.0" style="-fx-font-style: italic;" text="LICENCE">
+                  <Label fx:id="niveau2" layoutX="105.0" layoutY="364.0" style="-fx-font-style: italic;" text="LICENCE">
                      <font>
                         <Font size="16.0" />
                      </font>
@@ -47,7 +47,7 @@
                         <Font size="16.0" />
                      </font>
                   </Label>
-                  <Text layoutX="47.0" layoutY="263.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-style: italic; -fx-font-style: bold;" text="PROGRAMMATION AVANCEE JAVA" textAlignment="CENTER" wrappingWidth="178.2431640625">
+                  <Text fx:id="Module" layoutX="47.0" layoutY="263.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-style: italic; -fx-font-style: bold;" text="PROGRAMMATION AVANCEE JAVA" textAlignment="CENTER" wrappingWidth="178.2431640625">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -68,7 +68,7 @@
                   </Label>
                   <Pane layoutX="8.0" layoutY="104.0" prefHeight="117.0" prefWidth="1035.0" style="-fx-background-color: #f1f1f1;">
                      <children>
-                        <Label layoutX="52.0" layoutY="50.0" text="DEVELOPPEMENT WEB ">
+                        <Label fx:id="module" layoutX="52.0" layoutY="50.0" text="DEVELOPPEMENT WEB ">
                            <font>
                               <Font size="18.0" />
                            </font>
@@ -78,31 +78,32 @@
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <Text layoutX="339.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="INFO-INFORMATIQUE DEVELOPPEUR APPICATION" wrappingWidth="272.119140625">
+                        <Text fx:id="nomClasse" layoutX="339.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="INFO-INFORMATIQUE DEVELOPPEUR APPICATION" wrappingWidth="272.119140625">
                            <font>
                               <Font size="18.0" />
                            </font>
                         </Text>
                         <Separator layoutX="662.0" layoutY="6.0" orientation="VERTICAL" prefHeight="104.0" prefWidth="6.0" />
-                        <TextField layoutX="682.0" layoutY="27.0" />
-                        <TextField layoutX="841.0" layoutY="27.0" />
+                        <TextField fx:id="absenceMatricule" layoutX="682.0" layoutY="27.0" />
+                        <TextField fx:id="Heur" layoutX="841.0" layoutY="27.0" />
                         <Label layoutX="683.0" layoutY="12.0" text="matricule" />
                         <Label layoutX="683.0" layoutY="54.0" text="date absence" />
                         <Label layoutX="841.0" layoutY="12.0" text="heure" />
-                        <Button layoutX="863.0" layoutY="74.0" mnemonicParsing="false" text="valider" />
-                        <DatePicker layoutX="683.0" layoutY="74.0" />
+                        <Button fx:id="valider" layoutX="863.0" layoutY="74.0" mnemonicParsing="false" text="valider" />
+                        <DatePicker fx:id="dateABS" layoutX="683.0" layoutY="74.0" />
                      </children></Pane>
                   <Pane layoutX="9.0" layoutY="241.0" prefHeight="411.0" prefWidth="1031.0" style="-fx-background-color: #f1f1f1;">
                      <children>
-                        <TableView focusTraversable="false" prefHeight="412.0" prefWidth="1033.0">
+                        <TableView fx:id="tableView" focusTraversable="false" prefHeight="412.0" prefWidth="1033.0">
                           <columns>
-                            <TableColumn prefWidth="97.0" text="Matricule" />
-                            <TableColumn prefWidth="207.0" text="Nom" />
-                              <TableColumn prefWidth="239.0" text="Prenom" />
-                              <TableColumn prefWidth="91.0" text="Niveau" />
-                              <TableColumn prefWidth="118.0" text="Date inscription" />
-                              <TableColumn prefWidth="126.0" text="nombre absence" />
-                              <TableColumn prefWidth="153.0" text="nombre heur absence" />
+                            <TableColumn fx:id="matricule_table" prefWidth="97.0" text="Matricule" />
+                            <TableColumn fx:id="nom_table" prefWidth="207.0" text="Nom" />
+                              <TableColumn fx:id="prenom_table" prefWidth="239.0" text="Prenom" />
+                              <TableColumn fx:id="niveau_table" prefWidth="91.0" text="Niveau" />
+                              <TableColumn fx:id="dateInscription_table" prefWidth="118.0" text="Date inscription" />
+                              <TableColumn fx:id="nombreabs_table" prefWidth="102.0" text="nombre absence" />
+                              <TableColumn fx:id="nombreheur_table" prefWidth="98.0" text="nombre heur absence" />
+                              <TableColumn fx:id="action" prefWidth="106.0" text="Action" />
                           </columns>
                         </TableView>
                      </children></Pane>
