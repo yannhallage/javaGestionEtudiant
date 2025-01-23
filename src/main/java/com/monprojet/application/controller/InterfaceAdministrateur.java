@@ -69,4 +69,9 @@ public class InterfaceAdministrateur {
     private void handleAddModuleClick(MouseEvent event) {
         openWindow("/fxml/InterfaceAdministrateurAddmodule.fxml", event);
     }
+ // Méthode pour gérer le clic sur le panneau "Ajouter un module"
+    @FXML
+    private void handleAddUserClick(MouseEvent event) {
+        openWindow("/fxml/InterfaceUserAccount.fxml", event);
+    }
 }

@@ -26,7 +26,7 @@
                         <Image url="@../picture/avatar-account-icon-default-social-media-profile-photo-vector-Photoroom.png" />
                      </image>
                   </ImageView>
-                  <Label layoutX="68.0" layoutY="152.0" text="YANN HALLAGE">
+                  <Label fx:id="adminName" layoutX="68.0" layoutY="152.0" text="YANN HALLAGE">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -89,8 +89,8 @@
                            </font>
                         </Label>
                         <Label layoutX="690.0" layoutY="60.0" text="Nom de la classe" />
-                        <TextField fx:id="suprimerClasse" layoutX="690.0" layoutY="76.0" prefHeight="33.0" prefWidth="228.0" promptText="Supprimer une classe" />
-                        <Button fx:id="buttonSupprimerClasse" layoutX="846.0" layoutY="120.0" mnemonicParsing="false" text="Supprimer" />
+                        <TextField fx:id="deletedEtudiant" layoutX="690.0" layoutY="76.0" prefHeight="33.0" prefWidth="228.0" promptText="Supprimer une classe" />
+                        <Button fx:id="buttonSupprimer" layoutX="846.0" layoutY="120.0" mnemonicParsing="false" text="Supprimer" />
                      </children></Pane>
                   <Pane layoutX="9.0" layoutY="241.0" prefHeight="411.0" prefWidth="1031.0" style="-fx-background-color: #f1f1f1;">
                      <children>

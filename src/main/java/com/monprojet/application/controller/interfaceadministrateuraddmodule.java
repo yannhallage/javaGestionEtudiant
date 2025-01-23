@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.prefs.Preferences;
 
 import com.monprojet.application.controller.interfaceadministrateuraddclass.DatabaseConnection;
 import com.monprojet.application.model.Module;
@@ -15,7 +16,7 @@ import javafx.fxml.FXML;
 
 import javafx.scene.control.TextField;
 import javafx.scene.control.Button;
-
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.Alert;
@@ -46,7 +47,8 @@ public class interfaceadministrateuraddmodule {
 	    private TextField classeModule;
 	    @FXML
 	    private TextField niveauM;
-	    
+	    @FXML
+	    private Label adminName;
 	    
 	    @FXML
 	    private TableView<Module> tableView;
@@ -82,6 +84,11 @@ public class interfaceadministrateuraddmodule {
 	        classedispensemodule.setCellValueFactory(new PropertyValueFactory<>("classeModule"));
 	        idmodule.setCellValueFactory(new PropertyValueFactory<>("idModule"));
 	        niveau.setCellValueFactory(new PropertyValueFactory<>("niveau"));
+	        
+	        Preferences prefs = Preferences.userNodeForPackage(getClass());
+	        
+	        
+	        adminName.setText(prefs.get("nomPrenom", "default"));
 	        
 	        loadModule();
 	        

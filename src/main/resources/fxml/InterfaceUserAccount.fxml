@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
@@ -15,7 +14,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="671.0" prefWidth="1324.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.monprojet.application.controller.interfaceadministrateuraddclass">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="671.0" prefWidth="1324.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.monprojet.application.controller.interfaceCompt_user">
    <children>
       <BorderPane prefHeight="200.0" prefWidth="200.0">
          <left>
@@ -44,62 +43,73 @@
                         <Font size="14.0" />
                      </font>
                   </Text>
-                  <Button fx:id="buttonquitter" layoutX="110.0" layoutY="602.0" mnemonicParsing="false" text="QUITTER" />
+                  <Button fx:id="buttonquitter" layoutX="83.0" layoutY="599.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="97.0" text="QUITTER" />
                </children>
             </Pane>
          </left>
          <center>
             <Pane prefHeight="671.0" prefWidth="909.0" style="-fx-background-color: #F3F7EC;" BorderPane.alignment="CENTER">
                <children>
-                  <Label layoutX="9.0" layoutY="13.0" text="AJOUTER UNE CLASSE">
+                  <Label layoutX="9.0" layoutY="13.0" text="COMPTE UTILISATEUR">
                      <font>
                         <Font name="System Bold" size="24.0" />
                      </font>
                   </Label>
                   <Pane layoutX="8.0" layoutY="51.0" prefHeight="170.0" prefWidth="1035.0" style="-fx-background-color: #f1f1f1;">
                      <children>
-                        <TextField fx:id="nomclasse_input" layoutX="17.0" layoutY="44.0" prefHeight="33.0" prefWidth="209.0" promptText="Classe" />
-                        <Separator layoutX="676.0" layoutY="15.0" orientation="VERTICAL" prefHeight="145.0" prefWidth="6.0" />
-                        <TextField fx:id="niveauclasse_input" layoutX="234.0" layoutY="44.0" prefHeight="32.0" prefWidth="204.0" promptText="Licence / Bts / Master" />
-                        <Label layoutX="17.0" layoutY="27.0" text="Nom de la Classe" />
-                        <Label layoutX="17.0" layoutY="86.0" text="nombre de module" />
-                        <Label layoutX="236.0" layoutY="27.0" text="Niveau" />
-                        <TextField fx:id="anneeclasse_input" layoutX="443.0" layoutY="44.0" prefHeight="31.0" prefWidth="205.0" promptText="1,2,3eme annee" />
-                        <TextField fx:id="module_input" layoutX="17.0" layoutY="103.0" prefHeight="33.0" prefWidth="210.0" promptText="nombre de module " />
-                        <Label layoutX="446.0" layoutY="27.0" text="Annee" />
-                        <Button fx:id="buttonajouter" layoutX="236.0" layoutY="103.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="85.0" style="-fx-background-color: #8eb486;" text="ajouter" textFill="WHITE">
+                        <Separator layoutX="791.0" layoutY="15.0" orientation="VERTICAL" prefHeight="145.0" prefWidth="6.0" />
+                        <Label layoutX="78.0" layoutY="88.0" text="Nombre d'Etudiant">
                            <font>
-                              <Font size="13.0" />
-                           </font>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </Button>
-                        <Button fx:id="buttonvider" layoutX="327.0" layoutY="103.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="89.0" style="-fx-background-color: #FF2929;" text="vider" textFill="WHITE">
+                              <Font size="14.0" />
+                           </font></Label>
+                        <Label layoutX="244.0" layoutY="87.0" text="Nombre d'Enseignant">
                            <font>
-                              <Font name="System Bold Italic" size="13.0" />
-                           </font>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </Button>
-                        <Label layoutX="690.0" layoutY="27.0" text="SUPPRIMER UNE CLASSE">
+                              <Font size="14.0" />
+                           </font></Label>
+                        <TextField fx:id="deletedEtudiant" layoutX="803.0" layoutY="73.0" prefHeight="38.0" prefWidth="214.0" promptText="Entrez le matricule " />
+                        <Label layoutX="803.0" layoutY="56.0" text="Matricule etudiant" />
+                        <Button fx:id="buttonSupprimer" layoutX="946.0" layoutY="116.0" mnemonicParsing="false" text="supprimer" />
+                        <Label layoutX="803.0" layoutY="19.0" text="SUPPRIMER ETUDIANT">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>
                         </Label>
-                        <Label layoutX="690.0" layoutY="60.0" text="Nom de la classe" />
-                        <TextField fx:id="deletedEtudiant" layoutX="690.0" layoutY="76.0" prefHeight="33.0" prefWidth="228.0" promptText="Supprimer une classe" />
-                        <Button fx:id="buttonSupprimer" layoutX="846.0" layoutY="120.0" mnemonicParsing="false" text="Supprimer" />
+                        <Label fx:id="nbr_Etudiant" layoutX="116.0" layoutY="65.0" text="Label" textAlignment="CENTER">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font></Label>
+                        <Label fx:id="nbr_Enseignant" layoutX="286.0" layoutY="65.0" text="Label" textAlignment="CENTER">
+                           <font>
+                              <Font name="System Bold Italic" size="18.0" />
+                           </font></Label>
+                        <Label fx:id="nbr_admin" layoutX="485.0" layoutY="65.0" text="Label" textAlignment="CENTER">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font></Label>
+                        <Label layoutX="426.0" layoutY="86.0" text="Nombre d'Administrateur">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Label>
+                        <Label fx:id="nbr_user" layoutX="669.0" layoutY="65.0" text="Label" textAlignment="CENTER">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font></Label>
+                        <Label layoutX="626.0" layoutY="86.0" text="Nombre d'Utilisateur">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Label>
                      </children></Pane>
                   <Pane layoutX="9.0" layoutY="241.0" prefHeight="411.0" prefWidth="1031.0" style="-fx-background-color: #f1f1f1;">
                      <children>
-                        <TableView fx:id="tableView" focusTraversable="false" layoutY="-1.0" prefHeight="412.0" prefWidth="1031.0">
+                        <TableView fx:id="tableView" focusTraversable="false" prefHeight="411.0" prefWidth="1031.0">
                           <columns>
-                            <TableColumn fx:id="nomdelaclasse_column" prefWidth="425.0" style="-fx-font-size: 16px; fx-alignment:: center;" text="nomdelaclasse" />
-                              <TableColumn fx:id="niveau_column" prefWidth="262.0" style="-fx-font-size: 16px; fx-alignment: center;" text="Niveau" />
-                              <TableColumn fx:id="annee_column" prefWidth="151.0" style="-fx-font-size: 16px; fx-alignment: center;" text="Annee" />
-                              <TableColumn fx:id="nombredemodule_column" prefWidth="192.0" style="-fx-font-size: 16px; fx-alignment: center;" text="nombredemodule" />
+                            <TableColumn fx:id="matricule_user" prefWidth="172.0" text="Matricule" />
+                              <TableColumn fx:id="nom_user" prefWidth="127.0" text="Nom utilisateur" />
+                              <TableColumn fx:id="prenom_user" prefWidth="155.0" text="Prenom utilisateur" />
+                              <TableColumn fx:id="mail_user" prefWidth="181.0" text="Email utilisateur" />
+                              <TableColumn fx:id="date_user" prefWidth="123.0" text="date creation compte" />
+                              <TableColumn fx:id="type_user" prefWidth="123.0" text="type utilisateur" />
+                              <TableColumn fx:id="role_user" prefWidth="148.0" text="Role" />
                           </columns>
                         </TableView>
                      </children></Pane>

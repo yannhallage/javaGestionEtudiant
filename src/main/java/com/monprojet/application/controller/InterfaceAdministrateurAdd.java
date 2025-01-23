@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -17,7 +18,9 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.prefs.Preferences;
 
+import com.monprojet.application.controller.interfaceCompt_user.DatabaseConnection;
 import com.monprojet.application.model.Etudiant;
 
 public class InterfaceAdministrateurAdd {
@@ -40,6 +43,12 @@ public class InterfaceAdministrateurAdd {
     private TextField inputclasse;
     @FXML
     private TextField inputniveauclasse;
+    @FXML
+    private Label adminName;
+    @FXML
+    private Button buttonSupprimer;
+    @FXML
+    private TextField deletedEtudiant;
 
     // TableView
     @FXML
@@ -85,10 +94,14 @@ public class InterfaceAdministrateurAdd {
         classe_etudiant.setCellValueFactory(new PropertyValueFactory<>("classe"));
         niveau_etudiant.setCellValueFactory(new PropertyValueFactory<>("niveauClasse"));
         date_etudiant.setCellValueFactory(new PropertyValueFactory<>("dateInscription"));
-
+        Preferences prefs = Preferences.userNodeForPackage(getClass());
+        
+        
+        adminName.setText(prefs.get("nomPrenom", "default"));
+        
         // Charger les données des étudiants depuis la base de données
         loadEtudiants();
-
+        
         // Action pour le bouton "Ajouter"
         buttonajouter.setOnAction(event -> {
             // Récupérer les valeurs des champs
@@ -113,6 +126,26 @@ public class InterfaceAdministrateurAdd {
                 }
             }
         });
+        
+        buttonSupprimer.setOnAction(event -> {
+            // Récupérer les valeurs des champs
+            String matricule = deletedEtudiant.getText();
+           
+            // Valider les données (exemple de validation simple)
+            if (matricule.isEmpty()) {
+                showAlert("Erreur", "Veuillez remplir tous les champs !");
+            } else {
+                if (matricule.length() != 9) {
+                    showAlert("Erreur", "La taille du matricule doit absolument être de 9 caractères !");
+                } else {
+                    // Ajouter l'étudiant à la base de données
+                    supprimerEtudiant(matricule);
+                    loadEtudiants(); // Recharger les étudiants dans la table
+                    clearelement(); // Vider les champs
+                }
+            }
+        });
+
 
         // Action pour le bouton "Vider"
         buttonvider.setOnAction(event -> clearelement());
@@ -202,6 +235,26 @@ public class InterfaceAdministrateurAdd {
         } catch (SQLException e) {
             e.printStackTrace();
             showAlert("Erreur", "Impossible de charger les étudiants : " + e.getMessage());
+        }
+    }
+
+    private void supprimerEtudiant(String matricule) {
+        String sql = "DELETE FROM etudiant WHERE matricule = ?";
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1, matricule);
+
+            int rowsAffected = pstmt.executeUpdate();
+            if (rowsAffected > 0) {
+                showAlert("Succès", "Étudiant supprimé avec succès de la base de données !");
+            } else {
+                showAlert("Information", "Aucun étudiant trouvé avec le matricule spécifié.");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            showAlert("Erreur", "Une erreur s'est produite lors de la suppression : " + e.getMessage());
         }
     }
 

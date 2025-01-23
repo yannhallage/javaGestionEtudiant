@@ -122,6 +122,7 @@ public class InterfaceEnseignantDashboard {
         niveau2.setText(prefs.get("niveau","default"));
         nomClasse.setText(prefs.get("classe", "default"));
         module.setText(prefs.get("module", "default"));
+        nomEn.setText(prefs.get("nomPrenom", "default"));
         // Charger les données des étudiants depuis la base de données
         loadEtudiants();
         

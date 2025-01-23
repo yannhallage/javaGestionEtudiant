@@ -29,10 +29,7 @@ public class viewController {
     private PasswordField motdepasse;
     @FXML
     private TextField matricule;
-    @FXML
-    public String Admin = "13028404K"; 
-    @FXML
-    public String mdp = "13028404K";
+    ;
 
     public class DatabaseConnection {
         
@@ -111,10 +108,11 @@ public class viewController {
 
                 // Vérifier les informations dans la base de données
                 String typeuser = validateCredentials(matricule.getText(), motdepasse.getText());
-                if (typeuser != null) {
+                String nomPrenom = Username(matricule.getText());
+                if (typeuser != null && nomPrenom != null ) {
                     // Sauvegarder les informations de connexion si elles sont valides
-                    saveConnectionData(matricule.getText(), motdepasse.getText());
-
+                    saveConnectionData(matricule.getText(), motdepasse.getText(), nomPrenom);
+                    
                     // Rediriger vers la fenêtre en fonction du type d'utilisateur
                     switch (typeuser.toLowerCase()) {
                         case "etudiant":
@@ -156,6 +154,26 @@ public class viewController {
         }
         return typeuser;
     }
+    // Méthode pour valider les informations dans la base de données
+    private String Username(String matricule) {
+        String nomPrenom = null;
+        
+        String query = "SELECT nom,prenom FROM compte_utilisateur WHERE matricule = ? ";
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setString(1, matricule);
+           
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                //nom = rs.getString("nom"); // Récupérer le type d'utilisateur
+                //prenom= rs.getString("prenom"); // Récupérer le type d'utilisateu
+                nomPrenom = rs.getString("nom") + " " + rs.getString("prenom"); 
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return nomPrenom;
+    }
 
     // Méthode générique pour ouvrir une nouvelle fenêtre
     private void openWindow(String fxmlPath, String title) {
@@ -179,10 +197,11 @@ public class viewController {
     }
 
     // Méthode pour sauvegarder les données de connexion dans les préférences
-    private void saveConnectionData(String matricule, String password) {
+    private void saveConnectionData(String matricule, String password ,String a) {
         Preferences prefs = Preferences.userNodeForPackage(getClass());
         prefs.put("matricule", matricule);  // Sauvegarde du matricule
         prefs.put("password", password);    // Sauvegarde du mot de passe
+        prefs.put("nomPrenom", a);
     }
 
     // Méthode pour charger les données de connexion depuis les préférences
@@ -190,6 +209,7 @@ public class viewController {
         Preferences prefs = Preferences.userNodeForPackage(getClass());
         String matriculeSaved = prefs.get("matricule", "");  // Valeur par défaut : chaîne vide
         String passwordSaved = prefs.get("password", "");    // Valeur par défaut : chaîne vide
+        //String nomPrenomSaved = prefs.get("nomPrenom", "");
 
         if (!matriculeSaved.isEmpty()) {
             matricule.setText(matriculeSaved);  // Remplir le champ matricule

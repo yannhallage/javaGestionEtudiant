@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.prefs.Preferences;
 
 import com.monprojet.application.controller.interfaceadministrateuraddclass.DatabaseConnection;
 
@@ -15,7 +16,7 @@ import javafx.fxml.FXML;
 
 import javafx.scene.control.TextField;
 import javafx.scene.control.Button;
-
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
@@ -41,7 +42,12 @@ public class interfaceadministrateuradden {
 	    private TextField nomEN;
 	    @FXML
 	    private TextField prenomEN;
-	  
+	    @FXML
+	    private Label adminName;
+	    @FXML
+	    private Button buttonSupprimer;
+	    @FXML
+	    private TextField deletedEtudiant;
 
 	    @FXML
 	    private TableView<Enseignant> tableView;
@@ -70,6 +76,11 @@ public class interfaceadministrateuradden {
 	        emailenseignant.setCellValueFactory(new PropertyValueFactory<>("email"));
 	        telephoneenseignant.setCellValueFactory(new PropertyValueFactory<>("numTel"));
 	        
+	        Preferences prefs = Preferences.userNodeForPackage(getClass());
+	        
+	        
+	        adminName.setText(prefs.get("nomPrenom", "default"));
+	        
 	        loadENS();
 	        
 		        // Action pour le bouton "Ajouter"
@@ -96,6 +107,24 @@ public class interfaceadministrateuradden {
 		            }
 	        });
 
+		        buttonSupprimer.setOnAction(event -> {
+		            // Récupérer les valeurs des champs
+		            String matricule = deletedEtudiant.getText();
+		           
+		            // Valider les données (exemple de validation simple)
+		            if (matricule.isEmpty()) {
+		                showAlert("Erreur", "Veuillez remplir tous les champs !");
+		            } else {
+		                if (matricule.length() != 9) {
+		                    showAlert("Erreur", "La taille du matricule doit absolument être de 9 caractères !");
+		                } else {
+		                    // Ajouter l'étudiant à la base de données
+		                    supprimerEtudiant(matricule);
+		                    loadENS(); // Recharger les étudiants dans la table
+		                    clearelement(); // Vider les champs
+		                }
+		            }
+		        });
 	        // Action pour le bouton "Vider"
 	        buttonvider.setOnAction(event -> {
 	           clearelement(); 	
@@ -162,7 +191,25 @@ public class interfaceadministrateuradden {
 	        }
 	    }
 	    
-	    
+	    private void supprimerEtudiant(String matricule) {
+	        String sql = "DELETE FROM enseignant WHERE matricule = ?";
+	        try (Connection conn = DatabaseConnection.getConnection();
+	             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+	            pstmt.setString(1, matricule);
+
+	            int rowsAffected = pstmt.executeUpdate();
+	            if (rowsAffected > 0) {
+	                showAlert("Succès", "Étudiant supprimé avec succès de la base de données !");
+	            } else {
+	                showAlert("Information", "Aucun étudiant trouvé avec le matricule spécifié.");
+	            }
+
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	            showAlert("Erreur", "Une erreur s'est produite lors de la suppression : " + e.getMessage());
+	        }
+	    }
 	    // Méthode utilitaire pour afficher des alertes
 	    private void showAlert(String title, String message) {
 	        Alert alert = new Alert(AlertType.INFORMATION);
