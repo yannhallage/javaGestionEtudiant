@@ -29,7 +29,7 @@
                         <Image url="@../picture/user.png" />
                      </image>
                   </ImageView>
-                  <Label fx:id="label_username" layoutX="1023.0" layoutY="29.0" style="-fx-font-weight: bold;" stylesheets="@../font/InterfaceEtudiant.css" text="Hallage Yann">
+                  <Label fx:id="label_username" layoutX="1023.0" layoutY="29.0" style="-fx-font-weight: bold;" stylesheets="@../font/InterfaceEtudiant.css" text="HALLAGE YANN">
                      <font>
                         <Font size="16.0" />
                      </font>

@@ -112,7 +112,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Pane>
-                  <Text layoutX="187.0" layoutY="417.0" opacity="0.65" strokeType="OUTSIDE" strokeWidth="0.0" text="An open-source prototype of both a “match 3” game and an old-school RPG with an infinite hallway and items to collect. These templates focus on modular design and project organization." textAlignment="CENTER" wrappingWidth="516.619140625" />
+                  <Text layoutX="209.0" layoutY="397.0" opacity="0.65" strokeType="OUTSIDE" strokeWidth="0.0" text="Cette interface est conçue pour permettre à l'administrateur de gérer l'ensemble des modules, des enseignants, des étudiants, et des classes. L'administrateur peut attribuer des modules aux enseignants, consulter et modifier les informations des utilisateurs (enseignants et étudiants)" textAlignment="CENTER" wrappingWidth="467.619140625" />
                   <Pane fx:id="addUser" layoutX="338.0" layoutY="198.0" onMouseClicked="#handleAddUserClick" prefHeight="122.0" prefWidth="215.0" style="-fx-background-color: white;" styleClass="card" stylesheets="@application.css">
                      <children>
                         <ImageView fitHeight="48.0" fitWidth="119.0" layoutX="-35.0" layoutY="37.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">

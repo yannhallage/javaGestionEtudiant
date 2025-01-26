@@ -39,7 +39,7 @@
                   </Text>
                   <Separator layoutX="38.0" layoutY="574.0" prefWidth="200.0" />
                   <Separator layoutX="38.0" layoutY="321.0" prefWidth="200.0" />
-                  <Text layoutX="12.0" layoutY="380.0" opacity="0.54" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-style: italic; -fx-font-style: bold;" text="An open-source prototype of both a “match 3” game and an old-school RPG with an infinite hallway and items to collect. These templates focus on modular design and project organization." textAlignment="CENTER" wrappingWidth="248.2431640625">
+                  <Text layoutX="12.0" layoutY="380.0" opacity="0.54" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-style: italic; -fx-font-style: bold;" text="Cette interface permet à l'administrateur de consulter et de gérer la liste des enseignants dans le système. Elle affiche les informations essentielles des enseignants ainsi qui moyen de suppression," textAlignment="CENTER" wrappingWidth="248.2431640625">
                      <font>
                         <Font size="14.0" />
                      </font>

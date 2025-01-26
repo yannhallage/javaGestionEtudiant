@@ -117,15 +117,12 @@ public class interfaceadministrateuraddclass {
             if (matricule.isEmpty()) {
                 showAlert("Erreur", "Veuillez remplir tous les champs !");
             } else {
-                if (matricule.length() != 9) {
-                    showAlert("Erreur", "La taille du matricule doit absolument être de 9 caractères !");
-                } else {
+            
                     // Ajouter l'étudiant à la base de données
                     supprimerEtudiant(matricule);
                     loadClasses(); // Recharger les étudiants dans la table
                     clearelement(); // Vider les champs
                 }
-            }
         });
         // Action pour le bouton "Vider"
         buttonvider.setOnAction(event -> clearelement());

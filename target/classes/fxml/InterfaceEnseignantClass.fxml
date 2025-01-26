@@ -35,8 +35,8 @@
                      </font>
                   </Label>
                   <Separator layoutX="49.0" layoutY="63.0" prefHeight="4.0" prefWidth="1154.0" />
-                  <Separator layoutX="48.0" layoutY="514.0" prefWidth="1154.0" />
-                  <Text layoutX="283.0" layoutY="539.0" opacity="0.61" strokeType="OUTSIDE" strokeWidth="0.0" text="An open-source prototype of both a “match 3” game and an old-school RPG with an infinite hallway and items to collect. These templates focus on modular design and project organization." textAlignment="CENTER" wrappingWidth="657.938720703125" />
+                  <Separator layoutX="48.0" layoutY="509.0" prefWidth="1154.0" />
+                  <Text layoutX="283.0" layoutY="534.0" opacity="0.61" strokeType="OUTSIDE" strokeWidth="0.0" text="Cette interface permet à chaque enseignant de consulter les modules auxquels il est rattaché. Elle affiche les informations essentielles sur les modules, telles que le code, le titre, la classe associée et la liste des étudiants inscrits." textAlignment="CENTER" wrappingWidth="657.938720703125" />
                   <Label layoutX="1083.0" layoutY="27.0" text="ENSEIGNANT">
                      <font>
                         <Font name="System Bold" size="18.0" />

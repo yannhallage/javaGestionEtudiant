@@ -50,7 +50,7 @@
                   </Button>
                   <AnchorPane layoutX="1.0" layoutY="344.0" prefHeight="56.0" prefWidth="381.0">
                      <children>
-                        <Text layoutX="21.0" layoutY="23.0" opacity="0.64" strokeType="OUTSIDE" strokeWidth="0.0" text="If you want to run the application in a new window, click the Start Each Application in a New Window check box." textAlignment="CENTER" wrappingWidth="338.08984375">
+                        <Text layoutX="21.0" layoutY="18.0" opacity="0.64" strokeType="OUTSIDE" strokeWidth="0.0" text="Interface de connexion au systeme de gestion des absence etudiant de l'Université de Technologie d'Abidjan" textAlignment="CENTER" wrappingWidth="338.08984375">
                            <font>
                               <Font name="Calibri" size="11.0" />
                            </font>

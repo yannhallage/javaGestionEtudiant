@@ -31,6 +31,10 @@ public class interfaceadministrateuraddmodule {
 	    @FXML
 	    private Button buttonvider;
 	    @FXML
+	    private Button buttonSupprimer_module;
+	    @FXML
+	    private TextField codeModule_supprimer;
+	    @FXML
 	    private Button buttonquitter; // Changé de Label en Button
 	   
 	    @FXML
@@ -114,6 +118,22 @@ public class interfaceadministrateuraddmodule {
 	            }
 	        });
 
+	        //action pour supprimer le module 
+	        buttonSupprimer_module.setOnAction(event -> {
+	            // Récupérer les valeurs des champs
+	            String codeModule = codeModule_supprimer.getText();
+	           
+	            // Valider les données (exemple de validation simple)
+	            if (codeModule.isEmpty()) {
+	                showAlert("Erreur", "Veuillez remplir tous les champs !");
+	            } else {
+	                    // Ajouter l'étudiant à la base de données
+	                    supprimerModule(codeModule);
+	                    loadModule(); // Recharger les étudiants dans la table
+	                    clearelement(); // Vider les champs
+	                }
+	
+	        });
 	     // Action pour le bouton "Vider"
 	        buttonvider.setOnAction(event -> {
 	            // Vider les champs
@@ -245,6 +265,28 @@ public class interfaceadministrateuraddmodule {
 	        }
 	    }
 	    
+	    
+	    //methode pour supprimer un module 
+	    private void supprimerModule(String code) {
+	        String sql = "DELETE FROM module WHERE code = ?";
+	        try (Connection conn = DatabaseConnection.getConnection();
+	             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+	            pstmt.setString(1, code);
+
+	            int rowsAffected = pstmt.executeUpdate();
+	            if (rowsAffected > 0) {
+	                showAlert("Succès", "Module supprimé avec succès de la base de données !");
+	                codeModule_supprimer.clear();
+	            } else {
+	                showAlert("Information", "Aucun module trouvé avec le matricule spécifié.");
+	            }
+
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	            showAlert("Erreur", "Une erreur s'est produite lors de la suppression : " + e.getMessage());
+	        }
+	    }
 	        // Méthode utilitaire pour afficher des alertes
 	        private void showAlert(String title, String message) {
 	            Alert alert = new Alert(AlertType.INFORMATION);
